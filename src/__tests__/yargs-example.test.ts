@@ -92,4 +92,44 @@ describe('yargs example', () => {
       expect(config.verbose).equal(false);
     });
   });
+
+  describe('timeout', () => {
+    afterEach(() => {
+      delete process.env.MYAPP_TIMEOUT;
+    });
+
+    it('should set timeout to `5000` when not passed', () => {
+      const config = cliConfiguration();
+
+      expect(config.timeout).equal(5_000);
+    });
+
+    it('should set timeout when passed', () => {
+      const config = cliConfiguration(['--timeout', '10000']);
+
+      expect(config.timeout).equals(10_000);
+    });
+
+    it('should set timeout when passed as alias', () => {
+      const config = cliConfiguration(['-t', '2000']);
+
+      expect(config.timeout).equals(2_000);
+    });
+
+    it('should use the env var', () => {
+      process.env.MYAPP_TIMEOUT = '3000';
+
+      const config = cliConfiguration();
+
+      expect(config.timeout).equal(3_000);
+    });
+
+    it('should use the passed param over the env var', () => {
+      process.env.MYAPP_TIMEOUT = '1000';
+
+      const config = cliConfiguration(['--timeout', '2000']);
+
+      expect(config.timeout).equal(2000);
+    });
+  });
 });

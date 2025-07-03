@@ -4,6 +4,7 @@ import {hideBin} from 'yargs/helpers';
 export type CliConfiguration = {
   logFile: string;
   verbose: boolean;
+  timeout: number;
 };
 
 export default function cliConfiguration(options?: string[]): CliConfiguration {
@@ -24,6 +25,13 @@ export default function cliConfiguration(options?: string[]): CliConfiguration {
       type: 'boolean',
       description: 'Enable verbose logging',
       default: false,
+    })
+    .option('timeout', {
+      // Env var: MYAPP_TIMEOUT
+      alias: 't',
+      type: 'number',
+      description: 'Timeout in milliseconds',
+      default: 5000,
     })
     .help()
     .parseSync();
