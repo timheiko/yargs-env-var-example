@@ -7,11 +7,20 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run lint"
   },
   "devDependencies": {
+    "gts": "^6.0.2",
     "jest": "^30.0.3",
     "typescript": "^5.8.3",
-    "yargs": "^18.0.0"
+    "yargs": "^18.0.0",
+    "@types/node": "^22.7.5"
   }
 }
