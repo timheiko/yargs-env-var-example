@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "An example of yargs library usage to read environment variables",
   "license": "ISC",
-  "author": "",
+  "author": "Dietmar H",
   "type": "module",
   "main": "build/index.js",
   "scripts": {
