@@ -17,10 +17,11 @@
     "posttest": "npm run lint"
   },
   "devDependencies": {
-    "@jest/globals": "^30.0.3",
+    "@babel/eslint-parser": "^7.28.0",
+    "@babel/preset-typescript": "^7.27.1",
     "@types/node": "^22.7.5",
+    "@types/yargs": "^17.0.33",
     "gts": "^6.0.2",
-    "jest": "^30.0.3",
     "typescript": "^5.8.3",
     "unplugin-auto-import": "^19.3.0",
     "vitest": "^3.2.4",
