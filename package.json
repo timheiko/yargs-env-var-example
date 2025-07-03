@@ -4,10 +4,10 @@
   "description": "An example of yargs library usage to read environment variables",
   "license": "ISC",
   "author": "",
-  "type": "commonjs",
+  "type": "module",
   "main": "build/index.js",
   "scripts": {
-    "test": "jest",
+    "test": "vitest --run",
     "lint": "gts lint",
     "clean": "gts clean",
     "compile": "tsc",
@@ -22,6 +22,8 @@
     "gts": "^6.0.2",
     "jest": "^30.0.3",
     "typescript": "^5.8.3",
+    "unplugin-auto-import": "^19.3.0",
+    "vitest": "^3.2.4",
     "yargs": "^18.0.0"
   }
 }
