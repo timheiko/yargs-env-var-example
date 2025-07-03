@@ -3,6 +3,7 @@ import {hideBin} from 'yargs/helpers';
 
 export type CliConfiguration = {
   logFile: string;
+  verbose: boolean;
 };
 
 export default function cliConfiguration(options?: string[]): CliConfiguration {
@@ -16,6 +17,13 @@ export default function cliConfiguration(options?: string[]): CliConfiguration {
       type: 'string',
       description: 'Path to the log file',
       default: './app.log',
+    })
+    .option('verbose', {
+      // Env var: MYAPP_VERBOSE
+      alias: 'v',
+      type: 'boolean',
+      description: 'Enable verbose logging',
+      default: false,
     })
     .help()
     .parseSync();

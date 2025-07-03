@@ -40,4 +40,56 @@ describe('yargs example', () => {
       expect(config.logFile).equal('./param-custom.log');
     });
   });
+
+  describe('verbose', () => {
+    afterEach(() => {
+      delete process.env.MYAPP_VERBOSE;
+    });
+
+    it('should set verbose to `false` when not passed', () => {
+      const config = cliConfiguration();
+
+      expect(config.verbose).equal(false);
+    });
+
+    it('should set verbose to `false` when `false` passed', () => {
+      const config = cliConfiguration(['--verbose', 'false']);
+
+      expect(config.verbose).equals(false);
+    });
+
+    it('should set verbose to `true` when `true` passed', () => {
+      const config = cliConfiguration(['--verbose', 'true']);
+
+      expect(config.verbose).equals(true);
+    });
+
+    it('should set verbose to `false` when `false` passed as alias', () => {
+      const config = cliConfiguration(['-v', 'false']);
+
+      expect(config.verbose).equals(false);
+    });
+
+    it('should set verbose to `true` when `true` passed as alias', () => {
+      const config = cliConfiguration(['-v', 'true']);
+
+      expect(config.verbose).equals(true);
+    });
+
+    it('should use the env var', () => {
+      process.env.MYAPP_VERBOSE = 'true';
+
+      const config = cliConfiguration();
+
+      expect(config.verbose).equal(true);
+    });
+
+    it('should use the passed param over the env var', () => {
+      process.env.MYAPP_VERBOSE = 'true';
+
+      const config = cliConfiguration(['--verbose', 'false']);
+
+      expect(config.verbose).equal(false);
+    });
+  });
 });
