@@ -7,14 +7,14 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    types: [ assigned, opened, synchronize, reopened, labeled ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [22.x, 24.x]
+        node-version: [22, 24]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -24,4 +24,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: npm install
     - run: npm test
